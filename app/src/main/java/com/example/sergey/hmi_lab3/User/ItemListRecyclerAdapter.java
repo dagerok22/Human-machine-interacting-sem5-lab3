@@ -60,8 +60,7 @@ public class ItemListRecyclerAdapter extends RecyclerView.Adapter<ItemListRecycl
     }
 
     public void setItems(final List<Item> newItems) {
-        dataSet.clear();
-        dataSet.addAll(newItems);
+        dataSet = newItems;
     }
 
     @Override

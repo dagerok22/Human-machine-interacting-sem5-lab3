@@ -8,7 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+import android.widget.SimpleAdapter;
 
+import com.example.sergey.hmi_lab3.MainActivity;
 import com.example.sergey.hmi_lab3.R;
 import com.example.sergey.hmi_lab3.db.helper.DatabaseHelper;
 import com.example.sergey.hmi_lab3.db.helper.ItemClickSupport;
@@ -37,6 +42,8 @@ public class UserActivity extends AppCompatActivity {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.search_view)
+    EditText search_view;
     private Dao<Item, Long> itemsDao;
     private DatabaseHelper databaseHelper;
     private RuntimeExceptionDao<Order, Long> ordersDao;
@@ -65,12 +72,43 @@ public class UserActivity extends AppCompatActivity {
 
         dataSet = getDataSet();
         setupAdapter();
+        setUpSearchView();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         databaseHelper.releaseHelper();
+    }
+
+    private void setUpSearchView() {
+        search_view.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                charSequence = charSequence.toString().toLowerCase();
+
+                ArrayList<Item> filteredList = new ArrayList<>();
+
+                for (Item item : dataSet) {
+                    String name = item.getName().toLowerCase();
+                    if (name.contains(charSequence) || charSequence.equals("")) {
+                        filteredList.add(item);
+                    }
+                }
+                itemsRecyclerAdapter.setItems(filteredList);
+                itemsRecyclerAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
     private void setUpTestData() {
