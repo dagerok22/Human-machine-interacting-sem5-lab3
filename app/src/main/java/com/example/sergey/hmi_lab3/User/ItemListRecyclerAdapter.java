@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.example.sergey.hmi_lab3.R;
 import com.example.sergey.hmi_lab3.db.model.Item;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 /**
@@ -26,7 +28,8 @@ public class ItemListRecyclerAdapter extends RecyclerView.Adapter<ItemListRecycl
 
         ViewHolder(View v) {
             super(v);
-
+            name = v.findViewById(R.id.name);
+            number = v.findViewById(R.id.number);
         }
     }
 
@@ -44,7 +47,7 @@ public class ItemListRecyclerAdapter extends RecyclerView.Adapter<ItemListRecycl
     public void onBindViewHolder(ItemListRecyclerAdapter.ViewHolder holder, int position) {
         Item item = dataSet.get(position);
         holder.name.setText(item.getName());
-        holder.name.setText(item.getNumber());
+        holder.number.setText(String.valueOf(item.getNumber()));
     }
 
     public List<Item> getItems() {

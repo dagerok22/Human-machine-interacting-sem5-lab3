@@ -12,12 +12,12 @@ public class Item implements Serializable {
     @DatabaseField(columnName = DatabaseContract.Items.COLUMN_NAME_NAME, canBeNull = false)
     private String name;
 
-    @DatabaseField(columnName = DatabaseContract.Items.COLUMN_NAME_NUMBER, defaultValue = "0")
+    @DatabaseField(columnName = DatabaseContract.Items.COLUMN_NAME_NUMBER)
     private Integer number;
 
     @DatabaseField(columnName = DatabaseContract.Items.COLUMN_NAME_ID,
             generatedId = true)
-    private long contactId;
+    private long id;
 
     @DatabaseField(columnName = DatabaseContract.Items.COLUMN_NAME_IS_AVAILABLE)
     private Boolean isAvailable;
@@ -42,12 +42,12 @@ public class Item implements Serializable {
         this.number = number;
     }
 
-    public long getContactId() {
-        return contactId;
+    public long getId() {
+        return id;
     }
 
-    public void setContactId(long contactId) {
-        this.contactId = contactId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Boolean getAvailable() {

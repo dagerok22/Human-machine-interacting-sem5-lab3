@@ -7,12 +7,10 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.io.Serializable;
 
 @DatabaseTable(tableName = DatabaseContract.Orders.COLUMN_NAME_TABLE_NAME)
-public class Order implements Serializable {
+public class Order {
 
-    @DatabaseField(columnName = DatabaseContract.Orders.COLUMN_NAME_ITEM_IN_ORDER,
-            foreign = true,
-            foreignAutoRefresh = true)
-    private Item item;
+    @DatabaseField(columnName = DatabaseContract.Orders.COLUMN_NAME_ITEM_ID, canBeNull = false)
+    private long itemId;
 
     @DatabaseField(columnName = DatabaseContract.Orders.COLUMN_NAME_USER,
             foreign = true,
@@ -22,20 +20,30 @@ public class Order implements Serializable {
     @DatabaseField(columnName = DatabaseContract.Orders.COLUMN_NAME_DATE)
     private long date;
 
-    @DatabaseField(columnName = DatabaseContract.Orders.COLUMN_NAME_ITEM_ID,
+    @DatabaseField(columnName = DatabaseContract.Orders.COLUMN_NAME_STATUS)
+    private int status;
+
+    @DatabaseField(columnName = DatabaseContract.Orders.COLUMN_NAME_ORDER_ID,
             generatedId = true)
     private long orderId;
-
 
     public Order() {
     }
 
-    public Item getItem() {
-        return item;
+    public int getStatus() {
+        return status;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public long getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(long itemId) {
+        this.itemId = itemId;
     }
 
     public User getCustomer() {

@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.sergey.hmi_lab3.db.model.Item;
 import com.example.sergey.hmi_lab3.db.model.Order;
 import com.example.sergey.hmi_lab3.db.model.User;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -14,7 +15,7 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
-    private static final String DATABASE_NAME = "database_iou.db";
+    private static final String DATABASE_NAME = "database_iou_2.db";
     private static final int DATABASE_VERSION = 1;
 
     private RuntimeExceptionDao<Item, Long> itemsDao;
@@ -49,6 +50,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(final SQLiteDatabase database, final ConnectionSource connectionSource, final int oldVersion, final int newVersion) {
         // Upgrade DB
+    }
+
+    public void releaseHelper(){
+        OpenHelperManager.releaseHelper();
     }
 
     public RuntimeExceptionDao<Item, Long> getItemsDao() {

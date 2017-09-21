@@ -3,11 +3,8 @@ package com.example.sergey.hmi_lab3.db.helper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.sergey.ioweyou.R;
+import com.example.sergey.hmi_lab3.R;
 
-/**
- * Created by sergey on 06.09.17.
- */
 
 public class ItemClickSupport {
     private final RecyclerView mRecyclerView;
