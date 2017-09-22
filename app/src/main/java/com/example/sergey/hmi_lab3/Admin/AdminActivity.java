@@ -73,12 +73,16 @@ public class AdminActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener((recyclerView1, position, v) -> {
-            Order order = dataSet.get(position);
-            EditOrderDialogFragment dialogFragment = EditOrderDialogFragment.newInstance(order);
-            dialogFragment.setOnDismissListener(() -> orderRecyclerAdapter.notifyItemChanged(position));
-            FragmentManager supportFragmentManager = getSupportFragmentManager();
-            dialogFragment.show(supportFragmentManager, "edit_order_dialog_fragment");
+            showEditOrderDialog(position);
         });
+    }
+
+    private void showEditOrderDialog(int position) {
+        Order order = dataSet.get(position);
+        EditOrderDialogFragment dialogFragment = EditOrderDialogFragment.newInstance(order);
+        dialogFragment.setOnDismissListener(() -> orderRecyclerAdapter.notifyItemChanged(position));
+        FragmentManager supportFragmentManager = getSupportFragmentManager();
+        dialogFragment.show(supportFragmentManager, "edit_order_dialog_fragment");
     }
 
 }

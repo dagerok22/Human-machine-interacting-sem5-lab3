@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".User.UserActivity"  />
         <activity android:name=".Admin.AdminActivity" />
+        <activity android:name=".AdminMenu.AdminMenuActivity" />
+        <activity android:name=".AdminItems.AdminItems" />
     </application>
 
 </manifest>

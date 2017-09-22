@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.sergey.hmi_lab3.Admin.AdminActivity;
+import com.example.sergey.hmi_lab3.AdminMenu.AdminMenuActivity;
 import com.example.sergey.hmi_lab3.User.UserActivity;
 import com.example.sergey.hmi_lab3.db.helper.DatabaseHelper;
 import com.example.sergey.hmi_lab3.db.model.Item;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.admin)
     void gotoAdmin() {
-        Intent intent = AdminActivity.getIntent(this);
+        Intent intent = AdminMenuActivity.getIntent(this);
         startActivity(intent);
     }
 }
