@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">HMI-lab3</string>
+    <string-array name="order_status">
+        <item>processing</item>
+        <item>dispatched</item>
+        <item>delivered</item>
+    </string-array>
 </resources>

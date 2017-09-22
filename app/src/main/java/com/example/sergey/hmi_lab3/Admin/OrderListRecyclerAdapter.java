@@ -27,12 +27,14 @@ public class OrderListRecyclerAdapter extends RecyclerView.Adapter<OrderListRecy
         TextView customer;
         TextView date;
         TextView item;
+        TextView status;
 
         ViewHolder(View v) {
             super(v);
             item = v.findViewById(R.id.item);
             date = v.findViewById(R.id.date);
             customer = v.findViewById(R.id.customer);
+            status = v.findViewById(R.id.status);
         }
     }
 
@@ -56,6 +58,8 @@ public class OrderListRecyclerAdapter extends RecyclerView.Adapter<OrderListRecy
         holder.customer.setText(order.getCustomer().getName());
         holder.item.setText(item.getName());
         holder.date.setText(DateTransformerUtils.getFormattedDateFromLong(order.getDate()));
+        int status = order.getStatus();
+        holder.status.setText(status == 0 ? "processing" : status == 1 ?  "dispatched" : "delivered");
     }
 
     public List<Order> getItems() {

@@ -2,22 +2,20 @@ package com.example.sergey.hmi_lab3.Admin;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.sergey.hmi_lab3.R;
-import com.example.sergey.hmi_lab3.User.ItemListRecyclerAdapter;
 import com.example.sergey.hmi_lab3.db.helper.DatabaseHelper;
 import com.example.sergey.hmi_lab3.db.helper.ItemClickSupport;
-import com.example.sergey.hmi_lab3.db.model.Item;
 import com.example.sergey.hmi_lab3.db.model.Order;
 import com.example.sergey.hmi_lab3.utils.HelperFactory;
 import com.facebook.stetho.Stetho;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
-import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -75,7 +73,11 @@ public class AdminActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener((recyclerView1, position, v) -> {
-
+            Order order = dataSet.get(position);
+            EditOrderDialogFragment dialogFragment = EditOrderDialogFragment.newInstance(order);
+            dialogFragment.setOnDismissListener(() -> orderRecyclerAdapter.notifyItemChanged(position));
+            FragmentManager supportFragmentManager = getSupportFragmentManager();
+            dialogFragment.show(supportFragmentManager, "edit_order_dialog_fragment");
         });
     }
 

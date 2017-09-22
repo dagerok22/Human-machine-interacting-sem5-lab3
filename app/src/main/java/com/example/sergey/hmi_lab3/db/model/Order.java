@@ -7,7 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.io.Serializable;
 
 @DatabaseTable(tableName = DatabaseContract.Orders.COLUMN_NAME_TABLE_NAME)
-public class Order {
+public class Order implements Serializable{
 
     @DatabaseField(columnName = DatabaseContract.Orders.COLUMN_NAME_ITEM_ID, canBeNull = false)
     private long itemId;
