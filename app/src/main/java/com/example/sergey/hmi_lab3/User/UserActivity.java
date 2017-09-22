@@ -172,8 +172,8 @@ public class UserActivity extends AppCompatActivity {
         order.setItemId(item.getId());
         order.setCustomer(user);
         order.setStatus(0);
-        Collection<Order> orders = user.getOrders();
-        orders.add(order);
+//        Collection<Order> orders = user.getOrders();
+//        orders.add(order);
         item.setNumber(item.getNumber() - 1);
         ordersDao.create(order);
         usersDao.update(user);
