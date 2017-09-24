@@ -16,10 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".User.UserActivity"  />
+        <activity android:name=".User.UserActivity" />
         <activity android:name=".Admin.AdminActivity" />
         <activity android:name=".AdminMenu.AdminMenuActivity" />
         <activity android:name=".AdminItems.AdminItems" />
+        <activity android:name=".UserRegistration.RegistrationActivity"></activity>
     </application>
 
 </manifest>

@@ -83,6 +83,12 @@ public class AdminItems extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener((recyclerView1, position, v) -> {
+            AddItemDialogFragment dialogFragment = AddItemDialogFragment.newInstance(dataSet.get(position));
+            dialogFragment.setOnDismissListener(() -> {
+                itemsRecyclerAdapter.notifyItemChanged(position);
+            });
+            FragmentManager supportFragmentManager = getSupportFragmentManager();
+            dialogFragment.show(supportFragmentManager, "edit_item_dialog_fragment");
         });
     }
 
@@ -122,7 +128,7 @@ public class AdminItems extends AppCompatActivity {
     }
 
     private void showAddIemDialog() {
-        AddItemDialogFragment dialogFragment = AddItemDialogFragment.newInstance();
+        AddItemDialogFragment dialogFragment = AddItemDialogFragment.newInstance(null);
         dialogFragment.setOnDismissListener(() -> {
             dataSet = getDataSet();
             itemsRecyclerAdapter.notifyDataSetChanged();
